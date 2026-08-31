@@ -1,258 +1,530 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Birthday Daddy ❤️</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Daddy ❤️</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-    body {
-      font-family: Georgia, serif;
-      background: #0b0b0b;
-      color: white;
-      text-align: center;
-    }
+body {
+    font-family: Georgia, serif;
+    background: linear-gradient(135deg, #12001f, #260047, #090014);
+    color: white;
+    text-align: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
 
-    .page {
-      min-height: 100vh;
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 30px 20px;
-      animation: fade 0.8s ease;
-    }
+.page {
+    min-height: 100vh;
+    display: none;
+    padding: 30px 20px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
 
-    .page.active {
-      display: flex;
-    }
+.page.active {
+    display: flex;
+}
 
-    h1 {
-      font-size: 42px;
-      margin-bottom: 20px;
-    }
+h1 {
+    font-size: 38px;
+    margin-bottom: 15px;
+}
 
-    h2 {
-      font-size: 32px;
-      margin-bottom: 25px;
-    }
+h2 {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
 
-    p {
-      max-width: 650px;
-      font-size: 20px;
-      line-height: 1.8;
-      margin: 10px;
-    }
+p {
+    font-size: 20px;
+    line-height: 1.6;
+    max-width: 700px;
+}
 
-    .heart {
-      font-size: 65px;
-      animation: beat 1.3s infinite;
-      margin-bottom: 20px;
-    }
+button {
+    border: none;
+    border-radius: 30px;
+    padding: 14px 28px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 25px;
+    background: #ff4fa3;
+    color: white;
+    box-shadow: 0 0 20px rgba(255, 79, 163, .5);
+}
 
-    button {
-      margin-top: 30px;
-      padding: 15px 35px;
-      border: none;
-      border-radius: 50px;
-      background: white;
-      color: black;
-      font-size: 18px;
-      cursor: pointer;
-      animation: pop 1.5s infinite;
-    }
+button:hover {
+    transform: scale(1.05);
+}
 
-    button:hover {
-      transform: scale(1.08);
-    }
+/* BALLOONS */
 
-    .photo-box {
-      width: min(85vw, 350px);
-      height: 350px;
-      border: 2px dashed #aaa;
-      border-radius: 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #aaa;
-      margin: 20px;
-    }
+.balloons {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 25px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
 
-    .video-box {
-      width: min(90vw, 600px);
-      height: 330px;
-      border: 2px dashed #aaa;
-      border-radius: 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #aaa;
-      margin: 20px;
-    }
+.balloon {
+    width: 95px;
+    height: 120px;
+    border-radius: 50% 50% 45% 45%;
+    position: relative;
+    cursor: pointer;
+    animation: float 2.5s ease-in-out infinite;
+    box-shadow: inset -12px -12px 20px rgba(0,0,0,.15),
+                0 8px 20px rgba(0,0,0,.3);
+}
 
-    .final {
-      background: #000;
-    }
+.balloon:nth-child(1) {
+    background: #ff4d6d;
+}
 
-    @keyframes fade {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
+.balloon:nth-child(2) {
+    background: #4dabf7;
+    animation-delay: .3s;
+}
 
-      to {
-        opacity: 1;
+.balloon:nth-child(3) {
+    background: #ffd43b;
+    animation-delay: .6s;
+}
+
+.balloon:nth-child(4) {
+    background: #69db7c;
+    animation-delay: .9s;
+}
+
+.balloon:nth-child(5) {
+    background: #da77f2;
+    animation-delay: 1.2s;
+}
+
+.balloon::before {
+    content: "";
+    position: absolute;
+    bottom: -12px;
+    left: 40px;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 14px solid currentColor;
+}
+
+.balloon::after {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 90px;
+    background: white;
+    left: 47px;
+    top: 118px;
+}
+
+.balloon.popped {
+    animation: pop .35s forwards;
+    pointer-events: none;
+}
+
+@keyframes float {
+    0%,100% {
         transform: translateY(0);
-      }
     }
+    50% {
+        transform: translateY(-15px);
+    }
+}
 
-    @keyframes beat {
-      0%, 100% {
+@keyframes pop {
+    0% {
         transform: scale(1);
-      }
-
-      50% {
-        transform: scale(1.2);
-      }
+        opacity: 1;
     }
-
-    @keyframes pop {
-      0%, 100% {
-        transform: scale(1);
-      }
-
-      50% {
-        transform: scale(1.06);
-      }
+    50% {
+        transform: scale(1.3);
     }
-
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 32px;
-      }
-
-      h2 {
-        font-size: 26px;
-      }
-
-      p {
-        font-size: 17px;
-      }
+    100% {
+        transform: scale(0);
+        opacity: 0;
     }
-  </style>
+}
+
+/* PHOTOS */
+
+.photo-box {
+    max-width: 850px;
+    width: 95%;
+}
+
+.photo-box img {
+    max-width: 100%;
+    max-height: 70vh;
+    object-fit: contain;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(255,255,255,.25);
+}
+
+/* GIFTS */
+
+.gifts {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.gift {
+    width: 190px;
+    height: 170px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.gift:hover {
+    transform: scale(1.08);
+}
+
+.gift-icon {
+    font-size: 90px;
+}
+
+.gift-title {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* MEMORY PHOTOS */
+
+.memory-gallery {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1100px;
+    margin-top: 25px;
+}
+
+.memory-gallery img {
+    width: 240px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(255,255,255,.2);
+}
+
+video {
+    width: 90%;
+    max-width: 800px;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+
+/* FINAL SURPRISE */
+
+.final-photo img {
+    max-width: 90%;
+    max-height: 70vh;
+    border-radius: 20px;
+    box-shadow: 0 0 40px rgba(255,255,255,.4);
+}
+
+.final-message {
+    font-size: 28px;
+    margin-bottom: 25px;
+}
+
+/* FLOATING FINAL BALLOON */
+
+.final-balloon {
+    font-size: 90px;
+    animation: flyUp 4s ease-in forwards;
+}
+
+@keyframes flyUp {
+    0% {
+        transform: translateY(300px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-500px);
+        opacity: 0;
+    }
+}
+</style>
 </head>
 
 <body>
 
-  <!-- OPENING -->
-  <section class="page active" id="page1">
-    <div class="heart">❤️</div>
+<!-- PAGE 1 -->
+<section id="page1" class="page active">
+    <h1>🎂 Happy Birthday Daddy ❤️</h1>
 
-    <h1>Dad...</h1>
+    <p>
+        I have a few little surprises for you... 💕
+    </p>
 
-    <p>I made something special for you.</p>
+    <p style="margin-top:15px;">
+        Pop the balloons one by one 🎈
+    </p>
 
-    <button onclick="nextPage()">Tap Here ❤️</button>
-  </section>
+    <div class="balloons">
+
+        <div class="balloon"
+             onclick="popBalloon(1, this)"></div>
+
+        <div class="balloon"
+             onclick="popBalloon(2, this)"></div>
+
+        <div class="balloon"
+             onclick="popBalloon(3, this)"></div>
+
+        <div class="balloon"
+             onclick="popBalloon(4, this)"></div>
+
+        <div class="balloon"
+             onclick="popBalloon(5, this)"></div>
+
+    </div>
+</section>
 
 
-  <!-- BIRTHDAY -->
-  <section class="page" id="page2">
+<!-- PHOTO PAGE -->
+<section id="photoPage" class="page">
 
-    <div class="heart">🥳❤️</div>
-
-    <h1>Happy Birthday Daddy!</h1>
-
-    <p>Today is all about you ❤️</p>
-
-    <button onclick="nextPage()">Continue →</button>
-  </section>
-
-
-  <!-- PHOTOS -->
-  <section class="page" id="page3">
-
-    <h2>Our Memories 📸</h2>
+    <h2 id="photoTitle">A Special Memory ❤️</h2>
 
     <div class="photo-box">
-      Your photos will go here
+        <img id="balloonPhoto" src="" alt="Memory">
     </div>
 
-    <p>Beautiful memories that I will always keep close to my heart. ❤️</p>
+    <button onclick="backToBalloons()">
+        🎈 Back to Balloons
+    </button>
 
-    <button onclick="nextPage()">Continue →</button>
-  </section>
+</section>
 
 
-  <!-- MESSAGE -->
-  <section class="page" id="page4">
+<!-- CONTINUE PAGE -->
+<section id="continuePage" class="page">
 
-    <h2>A Message For You 💌</h2>
+    <div class="final-balloon">🎈</div>
+
+    <h1>One more surprise for you, Dad ❤️</h1>
+
+    <button onclick="showPage('messagePage')">
+        Continue 💕
+    </button>
+
+</section>
+
+
+<!-- MESSAGE PAGE -->
+<section id="messagePage" class="page">
+
+    <h1>For My Dad ❤️</h1>
 
     <p>
-      Your special Telugu message will go here.
+        Dear Dad,<br><br>
+
+        You are one of the most special people in my life.
+        Thank you for everything you have done for our family,
+        for your love, your care, your strength and all the
+        beautiful memories we have together. ❤️
+        <br><br>
+
+        Happy Birthday, Daddy! 🎂
+        <br>
+        I love you so much! ❤️
     </p>
 
-    <p>
-      ❤️ With lots of love
-    </p>
+    <button onclick="showPage('giftsPage')">
+        Continue 🎁
+    </button>
 
-    <button onclick="nextPage()">Continue →</button>
-  </section>
+</section>
 
 
-  <!-- VIDEO -->
-  <section class="page" id="page5">
+<!-- GIFTS PAGE -->
+<section id="giftsPage" class="page">
 
-    <h2>A Little Video For You 🎥</h2>
+    <h1>🎁 Dad, You Have Two Special Gifts! 🎁</h1>
 
-    <div class="video-box">
-      Your video will go here
+    <div class="gifts">
+
+        <div class="gift" onclick="showPage('memoryPage')">
+            <div class="gift-icon">🎁</div>
+            <div class="gift-title">Memories</div>
+        </div>
+
+        <div class="gift" onclick="showPage('videoPage')">
+            <div class="gift-icon">🎁</div>
+            <div class="gift-title">Surprise</div>
+        </div>
+
     </div>
 
-    <button onclick="nextPage()">Continue →</button>
-  </section>
+</section>
 
 
-  <!-- FINAL MESSAGE -->
-  <section class="page final" id="page6">
+<!-- MEMORY PAGE -->
+<section id="memoryPage" class="page">
 
-    <div class="heart">❤️</div>
+    <h1>❤️ Our Beautiful Memories ❤️</h1>
 
-    <h1>Happy Birthday Daddy!</h1>
+    <div class="memory-gallery">
 
-    <p>
-      Thank you for everything you have done for us.
+        <img src="WhatsApp%20Image%202026-08-31%20at%204.49.14%20PM.jpeg">
+
+        <img src="WhatsApp%20Image%202026-08-31%20at%205.01.23%20PM.jpeg">
+
+        <img src="WhatsApp%20Image%202026-08-31%20at%204.56.34%20PM.jpeg">
+
+        <img src="WhatsApp%20Image%202026-08-31%20at%204.56.28%20PM.jpeg">
+
+        <img src="WhatsApp%20Image%202026-08-31%20at%204.56.23%20PM.jpeg">
+
+    </div>
+
+    <button onclick="showPage('giftsPage')">
+        ⬅ Back to Gifts
+    </button>
+
+</section>
+
+
+<!-- VIDEO PAGE -->
+<section id="videoPage" class="page">
+
+    <h1>🎬 A Special Video For Dad ❤️</h1>
+
+    <video controls>
+        <source src="surprise-video.mp4" type="video/mp4">
+        Your browser does not support video playback.
+    </video>
+
+    <button onclick="showPage('giftsPage')">
+        ⬅ Back to Gifts
+    </button>
+
+    <button onclick="showPage('finalPage')">
+        Continue to Your Surprise ✨
+    </button>
+
+</section>
+
+
+<!-- FINAL SURPRISE -->
+<section id="finalPage" class="page">
+
+    <div class="final-message">
+        ✨ Your Final Surprise ✨
+    </div>
+
+    <p style="margin-bottom:25px;">
+        A special memory of two fathers ❤️
     </p>
 
-    <p>
-      Love you always, Dad. ❤️
-    </p>
+    <div class="final-photo">
 
-  </section>
+        <!-- REPLACE final-surprise.jpg WITH YOUR FINAL PHOTO -->
+        <img src="final-surprise.jpg" alt="Final Surprise">
+
+    </div>
+
+    <h2 style="margin-top:25px;">
+        ❤️ Happy Birthday, Daddy ❤️
+    </h2>
+
+</section>
 
 
-  <script>
-    let currentPage = 1;
+<script>
 
-    function nextPage() {
-      document.getElementById("page" + currentPage)
-        .classList.remove("active");
+let poppedCount = 0;
 
-      currentPage++;
+/*
+   CHANGE THESE ONLY IF YOUR IMAGE FILENAMES ARE DIFFERENT.
+*/
 
-      document.getElementById("page" + currentPage)
-        .classList.add("active");
+const balloonPhotos = [
 
-      window.scrollTo(0, 0);
+    "WhatsApp%20Image%202026-08-31%20at%204.49.14%20PM.jpeg",
+
+    "WhatsApp%20Image%202026-08-31%20at%205.01.23%20PM.jpeg",
+
+    "WhatsApp%20Image%202026-08-31%20at%204.56.34%20PM.jpeg",
+
+    "WhatsApp%20Image%202026-08-31%20at%204.56.28%20PM.jpeg",
+
+    "WhatsApp%20Image%202026-08-31%20at%204.56.23%20PM.jpeg"
+
+];
+
+function showPage(pageId) {
+
+    document.querySelectorAll(".page").forEach(page => {
+        page.classList.remove("active");
+    });
+
+    document.getElementById(pageId).classList.add("active");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+function popBalloon(number, balloon) {
+
+    if (balloon.classList.contains("popped")) {
+        return;
     }
-  </script>
+
+    poppedCount++;
+
+    balloon.classList.add("popped");
+
+    setTimeout(() => {
+
+        document.getElementById("balloonPhoto").src =
+            balloonPhotos[number - 1];
+
+        document.getElementById("photoTitle").innerText =
+            "Memory " + number + " ❤️";
+
+        showPage("photoPage");
+
+    }, 350);
+}
+
+
+function backToBalloons() {
+
+    if (poppedCount >= 5) {
+
+        showPage("continuePage");
+
+    } else {
+
+        showPage("page1");
+
+    }
+}
+
+</script>
 
 </body>
 </html>
