@@ -25,8 +25,8 @@ body {
     min-height: 100vh;
     display: none;
     padding: 30px 20px;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
 }
 
@@ -34,232 +34,347 @@ body {
     display: flex;
 }
 
-h1 {
-    font-size: 38px;
-    margin-bottom: 15px;
-}
+/* START */
 
-h2 {
-    font-size: 30px;
-    margin-bottom: 20px;
-}
-
-p {
-    font-size: 20px;
-    line-height: 1.6;
-    max-width: 700px;
-}
-
-button {
-    border: none;
-    border-radius: 30px;
-    padding: 14px 28px;
-    font-size: 18px;
+.start-circle {
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #ff7096, #ff174f, #a50035);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     cursor: pointer;
-    margin-top: 25px;
-    background: #ff4fa3;
-    color: white;
-    box-shadow: 0 0 20px rgba(255, 79, 163, .5);
+    box-shadow:
+        0 0 25px #ff4081,
+        0 0 70px rgba(255,64,129,.7);
+    animation: pulse 1.5s infinite;
 }
 
-button:hover {
+.start-circle:hover {
     transform: scale(1.05);
+}
+
+.tap {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.birthday {
+    font-size: 29px;
+    font-weight: bold;
+    margin-top: 7px;
+}
+
+.start-heart {
+    font-size: 38px;
+    margin-top: 5px;
+}
+
+@keyframes pulse {
+    0%,100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.08);
+    }
 }
 
 /* BALLOONS */
 
-.balloons {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    gap: 25px;
-    flex-wrap: wrap;
-    margin-top: 40px;
+.balloon-page h1 {
+    font-size: 34px;
+    margin-bottom: 12px;
+}
+
+.balloon-page p {
+    font-size: 19px;
+    margin-bottom: 20px;
+}
+
+.balloon-area {
+    position: relative;
+    width: 100%;
+    max-width: 520px;
+    height: 450px;
+    overflow: hidden;
 }
 
 .balloon {
-    width: 95px;
-    height: 120px;
-    border-radius: 50% 50% 45% 45%;
-    position: relative;
-    cursor: pointer;
-    animation: float 2.5s ease-in-out infinite;
-    box-shadow: inset -12px -12px 20px rgba(0,0,0,.15),
-                0 8px 20px rgba(0,0,0,.3);
-}
-
-.balloon:nth-child(1) {
-    background: #ff4d6d;
-}
-
-.balloon:nth-child(2) {
-    background: #4dabf7;
-    animation-delay: .3s;
-}
-
-.balloon:nth-child(3) {
-    background: #ffd43b;
-    animation-delay: .6s;
-}
-
-.balloon:nth-child(4) {
-    background: #69db7c;
-    animation-delay: .9s;
-}
-
-.balloon:nth-child(5) {
-    background: #da77f2;
-    animation-delay: 1.2s;
-}
-
-.balloon::before {
-    content: "";
     position: absolute;
-    bottom: -12px;
-    left: 40px;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-top: 14px solid currentColor;
+    left: 50%;
+    bottom: -190px;
+    transform: translateX(-50%);
+
+    width: 135px;
+    height: 165px;
+
+    border-radius: 50% 50% 45% 45%;
+
+    background:
+        radial-gradient(circle at 30% 25%,
+        rgba(255,255,255,.7) 0 7%,
+        transparent 8%),
+        linear-gradient(135deg,#ff7aa2,#ff174f,#a90036);
+
+    box-shadow:
+        inset -18px -20px 30px rgba(0,0,0,.25),
+        0 0 30px rgba(255,64,129,.8);
+
+    cursor: pointer;
+
+    animation: floatBalloon 4s ease-out forwards;
+}
+
+.balloon:hover {
+    filter: brightness(1.15);
 }
 
 .balloon::after {
     content: "";
     position: absolute;
+    bottom: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-top: 18px solid #a90036;
+}
+
+.balloon::before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
     width: 2px;
-    height: 90px;
-    background: white;
-    left: 47px;
-    top: 118px;
+    height: 160px;
+    background: rgba(255,255,255,.8);
 }
 
-.balloon.popped {
-    animation: pop .35s forwards;
-    pointer-events: none;
+.balloon-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 18px;
+    font-weight: bold;
+    white-space: nowrap;
 }
 
-@keyframes float {
-    0%,100% {
-        transform: translateY(0);
+@keyframes floatBalloon {
+    from {
+        bottom: -190px;
     }
-    50% {
-        transform: translateY(-15px);
-    }
-}
-
-@keyframes pop {
-    0% {
-        transform: scale(1);
-        opacity: 1;
-    }
-    50% {
-        transform: scale(1.3);
-    }
-    100% {
-        transform: scale(0);
-        opacity: 0;
+    to {
+        bottom: 90px;
     }
 }
 
-/* PHOTOS */
+/* PHOTO */
 
-.photo-box {
-    max-width: 850px;
-    width: 95%;
+.photo-page {
+    padding-top: 35px;
+    padding-bottom: 35px;
 }
 
-.photo-box img {
-    max-width: 100%;
-    max-height: 70vh;
+.photo-title {
+    font-size: 31px;
+    margin-bottom: 22px;
+}
+
+.photo-page img {
+    width: min(92vw, 700px);
+    max-height: 68vh;
     object-fit: contain;
     border-radius: 20px;
-    box-shadow: 0 0 30px rgba(255,255,255,.25);
+    box-shadow: 0 0 35px rgba(255,255,255,.25);
+    animation: photoIn .8s ease;
 }
 
-/* GIFTS */
-
-.gifts {
-    display: flex;
-    gap: 40px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 30px;
+@keyframes photoIn {
+    from {
+        opacity: 0;
+        transform: scale(.75);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
-.gift {
-    width: 190px;
-    height: 170px;
-    cursor: pointer;
-    transition: .3s;
-}
+/* BUTTON */
 
-.gift:hover {
-    transform: scale(1.08);
-}
-
-.gift-icon {
-    font-size: 90px;
-}
-
-.gift-title {
-    font-size: 22px;
-    font-weight: bold;
-}
-
-/* MEMORY PHOTOS */
-
-.memory-gallery {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-    max-width: 1100px;
+.continue-btn {
     margin-top: 25px;
+    padding: 14px 30px;
+    border: none;
+    border-radius: 30px;
+    background: #ff4f81;
+    color: white;
+    font-size: 18px;
+    font-family: Georgia, serif;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(255,79,129,.5);
+    transition: .2s;
 }
 
-.memory-gallery img {
-    width: 240px;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 15px;
-    box-shadow: 0 0 20px rgba(255,255,255,.2);
+.continue-btn:hover {
+    transform: scale(1.06);
 }
 
-video {
-    width: 90%;
-    max-width: 800px;
-    border-radius: 20px;
-    margin-top: 20px;
+/* MESSAGE */
+
+.message-page {
+    justify-content: flex-start;
+    padding-top: 35px;
 }
 
-/* FINAL SURPRISE */
-
-.final-photo img {
-    max-width: 90%;
-    max-height: 70vh;
-    border-radius: 20px;
-    box-shadow: 0 0 40px rgba(255,255,255,.4);
+.message-box {
+    width: min(92vw, 780px);
+    max-height: 78vh;
+    overflow-y: auto;
+    padding: 30px;
+    border-radius: 25px;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.15);
+    box-shadow: 0 0 30px rgba(255,64,129,.25);
+    text-align: left;
 }
 
-.final-message {
-    font-size: 28px;
+.message-box h1 {
+    text-align: center;
+    font-size: 32px;
+    color: #ff709b;
     margin-bottom: 25px;
 }
 
-/* FLOATING FINAL BALLOON */
-
-.final-balloon {
-    font-size: 90px;
-    animation: flyUp 4s ease-in forwards;
+.message-box p {
+    font-size: 19px;
+    line-height: 1.75;
 }
 
-@keyframes flyUp {
-    0% {
-        transform: translateY(300px);
-        opacity: 1;
+/* MEMORIES MENU */
+
+.gifts h1 {
+    font-size: 35px;
+    margin-bottom: 15px;
+}
+
+.gifts p {
+    font-size: 19px;
+    margin-bottom: 30px;
+}
+
+.gift-buttons {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.gift-btn {
+    border: none;
+    border-radius: 25px;
+    padding: 25px 35px;
+    min-width: 180px;
+    background: rgba(255,255,255,.1);
+    color: white;
+    font-size: 20px;
+    font-family: Georgia, serif;
+    cursor: pointer;
+    box-shadow: 0 0 25px rgba(255,64,129,.25);
+    transition: .2s;
+}
+
+.gift-btn:hover {
+    transform: translateY(-5px) scale(1.03);
+}
+
+/* MEMORIES */
+
+.memory-page h1 {
+    font-size: 34px;
+    margin-bottom: 25px;
+}
+
+.memory-gallery {
+    width: min(94vw, 900px);
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 18px;
+}
+
+.memory-gallery img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 18px;
+    box-shadow: 0 0 20px rgba(255,255,255,.18);
+}
+
+/* VIDEO */
+
+.video-page h1 {
+    font-size: 34px;
+    margin-bottom: 25px;
+}
+
+.video-page video {
+    width: min(94vw, 800px);
+    max-height: 70vh;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(255,255,255,.2);
+}
+
+/* FINAL */
+
+.final-page h1 {
+    font-size: 38px;
+    color: #ff709b;
+    margin-bottom: 25px;
+}
+
+.final-page img {
+    width: min(92vw, 750px);
+    max-height: 70vh;
+    object-fit: contain;
+    border-radius: 22px;
+    box-shadow: 0 0 40px rgba(255,64,129,.45);
+}
+
+@media(max-width:600px) {
+
+    .start-circle {
+        width: 200px;
+        height: 200px;
     }
-    100% {
-        transform: translateY(-500px);
-        opacity: 0;
+
+    .tap {
+        font-size: 20px;
+    }
+
+    .birthday {
+        font-size: 25px;
+    }
+
+    .balloon-page h1,
+    .photo-title,
+    .memory-page h1,
+    .video-page h1 {
+        font-size: 27px;
+    }
+
+    .message-box {
+        padding: 22px;
+    }
+
+    .message-box p {
+        font-size: 17px;
+    }
+
+    .gift-btn {
+        width: 90%;
     }
 }
 </style>
@@ -267,184 +382,428 @@ video {
 
 <body>
 
-<!-- PAGE 1 -->
-<section id="page1" class="page active">
-    <h1>🎂 Happy Birthday Daddy ❤️</h1>
+<!-- ================================================= -->
+<!-- 1. START -->
+<!-- ================================================= -->
 
-    <p>
-        I have a few little surprises for you... 💕
-    </p>
+<section id="startPage" class="page active">
 
-    <p style="margin-top:15px;">
-        Pop the balloons one by one 🎈
-    </p>
+    <div class="start-circle" onclick="startBirthday()">
 
-    <div class="balloons">
+        <div class="tap">TAP HERE</div>
 
-        <div class="balloon"
-             onclick="popBalloon(1, this)"></div>
+        <div class="birthday">HAPPY</div>
+        <div class="birthday">BIRTHDAY</div>
 
-        <div class="balloon"
-             onclick="popBalloon(2, this)"></div>
-
-        <div class="balloon"
-             onclick="popBalloon(3, this)"></div>
-
-        <div class="balloon"
-             onclick="popBalloon(4, this)"></div>
-
-        <div class="balloon"
-             onclick="popBalloon(5, this)"></div>
+        <div class="start-heart">❤️</div>
 
     </div>
+
 </section>
 
 
-<!-- PHOTO PAGE -->
-<section id="photoPage" class="page">
+<!-- ================================================= -->
+<!-- 2. BALLOON 1 -->
+<!-- FAMILY -->
+<!-- ================================================= -->
 
-    <h2 id="photoTitle">A Special Memory ❤️</h2>
+<section id="balloon1" class="page balloon-page">
 
-    <div class="photo-box">
-        <img id="balloonPhoto" src="" alt="Memory">
+    <h1>🎈 Balloon 1</h1>
+    <p>Tap the balloon to reveal a memory ❤️</p>
+
+    <div class="balloon-area">
+
+        <div class="balloon" onclick="showPage('photo1')">
+            <div class="balloon-text">POP ME ❤️</div>
+        </div>
+
     </div>
 
-    <button onclick="backToBalloons()">
-        🎈 Back to Balloons
+</section>
+
+
+<!-- ================================================= -->
+<!-- PHOTO 1 -->
+<!-- FATHER + MOTHER + BROTHER + YOU -->
+<!-- ================================================= -->
+
+<section id="photo1" class="page photo-page">
+
+    <div class="photo-title">
+        ❤️ Our Beautiful Family ❤️
+    </div>
+
+    <img src="WhatsApp%20Image%202026-08-31%20at%209.05.48%20PM.jpeg">
+
+    <button class="continue-btn" onclick="showPage('balloon2')">
+        Continue ❤️
     </button>
 
 </section>
 
 
-<!-- CONTINUE PAGE -->
-<section id="continuePage" class="page">
+<!-- ================================================= -->
+<!-- BALLOON 2 -->
+<!-- WIFE + HUSBAND -->
+<!-- ================================================= -->
 
-    <div class="final-balloon">🎈</div>
+<section id="balloon2" class="page balloon-page">
 
-    <h1>One more surprise for you, Dad ❤️</h1>
+    <h1>🎈 Balloon 2</h1>
+    <p>Another beautiful memory ❤️</p>
 
-    <button onclick="showPage('messagePage')">
-        Continue 💕
+    <div class="balloon-area">
+
+        <div class="balloon" onclick="showPage('photo2')">
+            <div class="balloon-text">POP ME ❤️</div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================================================= -->
+<!-- PHOTO 2 -->
+<!-- WIFE + HUSBAND -->
+<!-- ================================================= -->
+
+<section id="photo2" class="page photo-page">
+
+    <div class="photo-title">
+        ❤️ Together Forever ❤️
+    </div>
+
+    <img src="WhatsApp%20Image%202026-08-31%20at%209.05.49%20PM.jpeg">
+
+    <button class="continue-btn" onclick="showPage('balloon3')">
+        Continue ❤️
     </button>
 
 </section>
 
 
-<!-- MESSAGE PAGE -->
-<section id="messagePage" class="page">
+<!-- ================================================= -->
+<!-- BALLOON 3 -->
+<!-- FATHER + BROTHER -->
+<!-- ================================================= -->
 
-    <h1>For My Dad ❤️</h1>
+<section id="balloon3" class="page balloon-page">
 
-    <p>
-        Dear Dad,<br><br>
+    <h1>🎈 Balloon 3</h1>
+    <p>A special Daddy memory ❤️</p>
 
-        You are one of the most special people in my life.
-        Thank you for everything you have done for our family,
-        for your love, your care, your strength and all the
-        beautiful memories we have together. ❤️
+    <div class="balloon-area">
+
+        <div class="balloon" onclick="showPage('photo3')">
+            <div class="balloon-text">POP ME ❤️</div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================================================= -->
+<!-- PHOTO 3 -->
+<!-- FATHER + BROTHER -->
+<!-- ================================================= -->
+
+<section id="photo3" class="page photo-page">
+
+    <div class="photo-title">
+        ❤️ Daddy & Son ❤️
+    </div>
+
+    <img src="WhatsApp%20Image%202026-08-31%20at%209.05.48%20PM%20(1).jpeg">
+
+    <button class="continue-btn" onclick="showPage('balloon4')">
+        Continue ❤️
+    </button>
+
+</section>
+
+
+<!-- ================================================= -->
+<!-- BALLOON 4 -->
+<!-- FATHER + YOU -->
+<!-- ================================================= -->
+
+<section id="balloon4" class="page balloon-page">
+
+    <h1>🎈 Balloon 4</h1>
+    <p>One more beautiful memory ❤️</p>
+
+    <div class="balloon-area">
+
+        <div class="balloon" onclick="showPage('photo4')">
+            <div class="balloon-text">POP ME ❤️</div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================================================= -->
+<!-- PHOTO 4 -->
+<!-- FATHER + YOU -->
+<!-- ================================================= -->
+
+<section id="photo4" class="page photo-page">
+
+    <div class="photo-title">
+        ❤️ Daddy & Me ❤️
+    </div>
+
+    <img src="WhatsApp%20Image%202026-08-31%20at%209.05.48%20PM%20(2).jpeg">
+
+    <button class="continue-btn" onclick="showPage('balloon5')">
+        Continue ❤️
+    </button>
+
+</section>
+
+
+<!-- ================================================= -->
+<!-- BALLOON 5 -->
+<!-- FATHER + HIS MOTHER + HIS FATHER -->
+<!-- ================================================= -->
+
+<section id="balloon5" class="page balloon-page">
+
+    <h1>🎈 Final Balloon</h1>
+    <p>The most special memory ❤️</p>
+
+    <div class="balloon-area">
+
+        <div class="balloon" onclick="showPage('photo5')">
+            <div class="balloon-text">POP ME ❤️</div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================================================= -->
+<!-- PHOTO 5 -->
+<!-- FATHER + HIS MOTHER + HIS FATHER -->
+<!-- ================================================= -->
+
+<section id="photo5" class="page photo-page">
+
+    <div class="photo-title">
+        ❤️ Three Generations ❤️
+    </div>
+
+    <img src="WhatsApp%20Image%202026-08-31%20at%209.06.17%20PM.jpeg">
+
+    <button class="continue-btn" onclick="showPage('messagePage')">
+        Continue ❤️
+    </button>
+
+</section>
+
+
+<!-- ================================================= -->
+<!-- MESSAGE -->
+<!-- ================================================= -->
+
+<section id="messagePage" class="page message-page">
+
+    <div class="message-box">
+
+        <h1>Happy Birthday Daddy ❤️😘</h1>
+
+        <p>
+
+        Daddy, 50 years అంటే చిన్న matter కాదు కదా! 😄
+        ఈ special birthday కి నా heart లో ఉన్న కొన్ని మాటలు మీతో చెప్పాలి అనిపించింది. ❤️
+
         <br><br>
 
-        Happy Birthday, Daddy! 🎂
-        <br>
-        I love you so much! ❤️
-    </p>
+        మీరు చిన్నప్పటి నుంచి life లో చాలా కష్టపడ్డారు.
+        మేము వచ్చాక, మా కోసం ఇంకా చాలా కష్టపడ్డారు.
+        నన్ను, Annayya ని, Mummy ని ఎప్పుడూ చాలా ప్రేమగా,
+        చాలా బాగా చూసుకున్నారు.
+        మా కోసం, మా happiness కోసం మీరు చేసిన ఎన్నో విషయాలు
+        అప్పుడు మాకు అర్థం కాకపోయినా,
+        ఇప్పుడు మెల్లగా వాటిలో ఉన్న మీ love,
+        మీ effort ఎంతో అర్థం అవుతుంది. 🥹❤️
 
-    <button onclick="showPage('giftsPage')">
-        Continue 🎁
-    </button>
+        <br><br>
 
-</section>
+        మేము ఏం అడిగినా కూడా మీరు easy గా “కాదు” అని చెప్పలేదు.
+        మా కోసం possible అయినంత వరకు చేసి,
+        మేము అడిగిన దానికి best గా ఇవ్వడానికి ఎప్పుడూ try చేశారు.
+        మేము కోరుకున్న ప్రతి చిన్న విషయం వెనక కూడా
+        మీ effort, మీ love ఉండేది. ❤️🥹
 
+        <br><br>
 
-<!-- GIFTS PAGE -->
-<section id="giftsPage" class="page">
+        మీరు ఎప్పుడూ మమ్మల్ని ఎక్కువగా ఏం అనలేదు.
+        కోపం వచ్చినా కూడా అప్పుడప్పుడు చిన్న చిన్న మాటలు అని
+        వదిలేసేవారు అంతే 😄😂.
+        కానీ మా మీద మీ ప్రేమ మాత్రం ఎప్పుడూ తగ్గలేదు. ❤️
 
-    <h1>🎁 Dad, You Have Two Special Gifts! 🎁</h1>
+        <br><br>
 
-    <div class="gifts">
+        నాకు, Annayya కి మీరు అంటే చాలా ఇష్టం Daddy.
+        అది మేము ఎక్కువగా బయటికి చూపించకపోవచ్చు,
+        కానీ మా మనసులో మీ place ఎప్పుడూ special ఏ.
+        మీరు మా Daddy మాత్రమే కాదు,
+        మాకు ఎప్పటికీ ఒక inspiration. ❤️✨
 
-        <div class="gift" onclick="showPage('memoryPage')">
-            <div class="gift-icon">🎁</div>
-            <div class="gift-title">Memories</div>
-        </div>
+        <br><br>
 
-        <div class="gift" onclick="showPage('videoPage')">
-            <div class="gift-icon">🎁</div>
-            <div class="gift-title">Surprise</div>
-        </div>
+        ఇంకా ఒకటి Daddy…
+        future లో ఏ situation వచ్చినా, ఏం జరిగినా,
+        మీరు ఎప్పుడూ ఒక్కరే అని అనుకోవద్దు.
+        మేము ఎప్పుడూ మీ వెనక ఉంటాం.
+        మీరు ఇన్ని years మా కోసం నిలబడ్డారు…
+        ఇప్పుడు, రేపు, ఎప్పటికీ మేము మీ కోసం నిలబడతాం. 🫂❤️
+
+        <br><br>
+
+        50 years complete చేసుకున్నారు Daddy…
+        కానీ ఇది just beginning అంతే! 😄🎂
+        ఇంకా 50 years కూడా ఇలానే healthy గా, happy గా,
+        నవ్వుతూ, Mummy తో, నాతో, Annayya తో కలిసి ఉండాలి.
+        ఇంకా చాలా, చాలా birthdays మనం అందరం కలిసి
+        ఇలానే happy గా celebrate చేసుకోవాలని
+        మనస్ఫూర్తిగా కోరుకుంటున్నాము. ❤️🫂
+
+        <br><br>
+
+        మీరు మా కోసం చేసిన ప్రతి దానికి
+        “Thank you” అనే చిన్న మాట సరిపోదు Daddy.
+        మీరు మా life లో ఉండటమే మాకు చాలా పెద్ద strength. ❤️
+
+        <br><br>
+
+        ఒక cute memory ఏంటంటే…
+        నేను చిన్నప్పుడు “Daddy” అని పిలవడం కూడా సరిగ్గా రాక,
+        ఏదో నా own style లో “Inka” అని పిలిచేదాన్ని అంటా. 😄😂
+        అది కూడా Mummy, మీరు చెప్తుంటే
+        నాకు ఇప్పటికీ చాలా cute గా అనిపిస్తుంది. 🥹❤️
+
+        <br><br>
+
+        అప్పటి నుంచి ఇప్పటి వరకు మేము ఎప్పుడూ మీతోనే ఉంటాం Daddy.
+        ఇప్పుడు ఏ situation లో అయినా మీ పక్కనే ఉంటాం. ❤️🫂
+
+        <br><br>
+
+        <strong>Happy Birthday Daddy (Inka) ❤️😘</strong>
+
+        </p>
+
+        <button class="continue-btn" onclick="showPage('giftsPage')">
+            Continue to Surprises 🎁
+        </button>
 
     </div>
 
 </section>
 
 
-<!-- MEMORY PAGE -->
-<section id="memoryPage" class="page">
+<!-- ================================================= -->
+<!-- GIFTS -->
+<!-- ================================================= -->
+
+<section id="giftsPage" class="page gifts">
+
+    <h1>🎁 Special Surprises 🎁</h1>
+
+    <p>Choose your surprise ❤️</p>
+
+    <div class="gift-buttons">
+
+        <button class="gift-btn" onclick="showPage('memoryPage')">
+            📸<br>
+            Memories
+        </button>
+
+        <button class="gift-btn" onclick="showPage('videoPage')">
+            🎥<br>
+            Surprise Video
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ================================================= -->
+<!-- MEMORIES -->
+<!-- ================================================= -->
+
+<section id="memoryPage" class="page memory-page">
 
     <h1>❤️ Our Beautiful Memories ❤️</h1>
 
     <div class="memory-gallery">
 
-        <img src="WhatsApp%20Image%202026-08-31%20at%204.49.14%20PM.jpeg">
+        <!-- ADD YOUR EXTRA MEMORY PHOTOS HERE -->
 
-        <img src="WhatsApp%20Image%202026-08-31%20at%205.01.23%20PM.jpeg">
+        <img src="YOUR-MEMORY-PHOTO-1.jpg">
 
-        <img src="WhatsApp%20Image%202026-08-31%20at%204.56.34%20PM.jpeg">
+        <img src="YOUR-MEMORY-PHOTO-2.jpg">
 
-        <img src="WhatsApp%20Image%202026-08-31%20at%204.56.28%20PM.jpeg">
+        <img src="YOUR-MEMORY-PHOTO-3.jpg">
 
-        <img src="WhatsApp%20Image%202026-08-31%20at%204.56.23%20PM.jpeg">
+        <img src="YOUR-MEMORY-PHOTO-4.jpg">
 
     </div>
 
-    <button onclick="showPage('giftsPage')">
-        ⬅ Back to Gifts
+    <button class="continue-btn" onclick="showPage('giftsPage')">
+        ← Back to Surprises
     </button>
 
 </section>
 
 
-<!-- VIDEO PAGE -->
-<section id="videoPage" class="page">
+<!-- ================================================= -->
+<!-- VIDEO -->
+<!-- ================================================= -->
 
-    <h1>🎬 A Special Video For Dad ❤️</h1>
+<section id="videoPage" class="page video-page">
 
-    <video controls>
-        <source src="surprise-video.mp4" type="video/mp4">
-        Your browser does not support video playback.
+    <h1>🎥 A Special Surprise ❤️</h1>
+
+    <video controls playsinline>
+
+        <!-- ADD YOUR VIDEO FILE NAME HERE -->
+
+        <source src="YOUR-VIDEO.mp4" type="video/mp4">
+
+        Your browser does not support video.
+
     </video>
 
-    <button onclick="showPage('giftsPage')">
-        ⬅ Back to Gifts
-    </button>
-
-    <button onclick="showPage('finalPage')">
-        Continue to Your Surprise ✨
+    <button class="continue-btn" onclick="showPage('finalPage')">
+        Final Surprise ❤️
     </button>
 
 </section>
 
 
+<!-- ================================================= -->
 <!-- FINAL SURPRISE -->
-<section id="finalPage" class="page">
+<!-- ================================================= -->
 
-    <div class="final-message">
-        ✨ Your Final Surprise ✨
-    </div>
+<section id="finalPage" class="page final-page">
 
-    <p style="margin-bottom:25px;">
-        A special memory of two fathers ❤️
-    </p>
+    <h1>🎉 One Last Surprise ❤️</h1>
 
-    <div class="final-photo">
+    <!-- ADD YOUR FINAL PHOTO HERE -->
 
-        <!-- REPLACE final-surprise.jpg WITH YOUR FINAL PHOTO -->
-        <img src="final-surprise.jpg" alt="Final Surprise">
-
-    </div>
+    <img src="YOUR-FINAL-PHOTO.jpg">
 
     <h2 style="margin-top:25px;">
-        ❤️ Happy Birthday, Daddy ❤️
+        Happy Birthday Daddy ❤️😘
     </h2>
 
 </section>
@@ -452,33 +811,13 @@ video {
 
 <script>
 
-let poppedCount = 0;
+function showPage(id) {
 
-/*
-   CHANGE THESE ONLY IF YOUR IMAGE FILENAMES ARE DIFFERENT.
-*/
-
-const balloonPhotos = [
-
-    "WhatsApp%20Image%202026-08-31%20at%204.49.14%20PM.jpeg",
-
-    "WhatsApp%20Image%202026-08-31%20at%205.01.23%20PM.jpeg",
-
-    "WhatsApp%20Image%202026-08-31%20at%204.56.34%20PM.jpeg",
-
-    "WhatsApp%20Image%202026-08-31%20at%204.56.28%20PM.jpeg",
-
-    "WhatsApp%20Image%202026-08-31%20at%204.56.23%20PM.jpeg"
-
-];
-
-function showPage(pageId) {
-
-    document.querySelectorAll(".page").forEach(page => {
+    document.querySelectorAll(".page").forEach(function(page) {
         page.classList.remove("active");
     });
 
-    document.getElementById(pageId).classList.add("active");
+    document.getElementById(id).classList.add("active");
 
     window.scrollTo({
         top: 0,
@@ -487,41 +826,10 @@ function showPage(pageId) {
 }
 
 
-function popBalloon(number, balloon) {
+function startBirthday() {
 
-    if (balloon.classList.contains("popped")) {
-        return;
-    }
+    showPage("balloon1");
 
-    poppedCount++;
-
-    balloon.classList.add("popped");
-
-    setTimeout(() => {
-
-        document.getElementById("balloonPhoto").src =
-            balloonPhotos[number - 1];
-
-        document.getElementById("photoTitle").innerText =
-            "Memory " + number + " ❤️";
-
-        showPage("photoPage");
-
-    }, 350);
-}
-
-
-function backToBalloons() {
-
-    if (poppedCount >= 5) {
-
-        showPage("continuePage");
-
-    } else {
-
-        showPage("page1");
-
-    }
 }
 
 </script>
