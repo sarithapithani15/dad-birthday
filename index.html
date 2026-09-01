@@ -270,13 +270,15 @@ button:hover{
 
 .surprise-boxes{
     display:flex;
-    gap:30px;
+    flex-direction:column;
+    gap:24px;
+    align-items:center;
     justify-content:center;
-    flex-wrap:wrap;
+    width:100%;
 }
 
 .surprise-box{
-    width:210px;
+    width:min(86vw,360px);
     min-height:210px;
     padding:30px 20px;
     border-radius:28px;
@@ -292,7 +294,7 @@ button:hover{
 }
 
 .surprise-icon{
-    font-size:75px;
+    font-size:68px;
 }
 
 .surprise-name{
@@ -472,6 +474,11 @@ button:hover{
         width:180px;
     }
 
+    .vertical-surprises{
+        flex-direction:column;
+        align-items:center;
+    }
+
 }
 </style>
 </head>
@@ -486,8 +493,10 @@ button:hover{
 
 <iframe
     id="youtubeMusic"
-    src="https://www.youtube.com/embed/zPLuIjRz8eA?enablejsapi=1&loop=1&playlist=zPLuIjRz8eA&controls=0"
-    allow="autoplay">
+    title="Birthday music"
+    src="about:blank"
+    allow="autoplay; encrypted-media"
+    style="position:fixed;width:1px;height:1px;opacity:0;pointer-events:none;border:0;left:-10px;bottom:-10px;">
 </iframe>
 
 
@@ -513,10 +522,6 @@ button:hover{
 <!-- ================================================= -->
 
 <section id="firstGame" class="page">
-
-    <div class="game-title">
-        One little question, Daddy ❤️
-    </div>
 
     <div class="game-box">
 
@@ -843,48 +848,24 @@ button:hover{
 
 
 <!-- ================================================= -->
-<!-- 10. TWO SURPRISE BOXES -->
+<!-- 10. MEMORIES SURPRISE -->
 <!-- ================================================= -->
 
 <section id="surprises" class="page">
 
     <div class="surprise-title">
-        🎁 Two Special Surprises 🎁
+        🎁 A Little Surprise 🎁
     </div>
 
     <div class="surprise-subtitle">
-        Choose one ❤️
+        Open it ❤️
     </div>
 
-    <div class="surprise-boxes">
+    <div class="surprise-boxes vertical-surprises">
 
-        <div
-            class="surprise-box"
-            onclick="openMemories()">
-
-            <div class="surprise-icon">
-                📸
-            </div>
-
-            <div class="surprise-name">
-                Memories
-            </div>
-
-        </div>
-
-
-        <div
-            class="surprise-box"
-            onclick="openVideo()">
-
-            <div class="surprise-icon">
-                🎥
-            </div>
-
-            <div class="surprise-name">
-                Video
-            </div>
-
+        <div class="surprise-box" onclick="openMemories()">
+            <div class="surprise-icon">🎁</div>
+            <div class="surprise-name">Memories</div>
         </div>
 
     </div>
@@ -899,48 +880,43 @@ button:hover{
 <section id="memories" class="page memories-page">
 
     <h1>
-        ❤️ Our Memories ❤️
+        ❤️ Memories ❤️
     </h1>
 
-    <div class="memory-gallery">
-
-        <img src="WhatsApp%20Image%202026-08-31%20at%204.56.20%20PM.jpeg" alt="Memory 1">
-
-        <img src="WhatsApp%20Image%202026-08-31%20at%204.56.22%20PM.jpeg" alt="Memory 2">
-
-        <img src="WhatsApp%20Image%202026-08-31%20at%204.56.23%20PM.jpeg" alt="Memory 3">
-
-        <img src="WhatsApp%20Image%202026-08-31%20at%204.56.25%20PM.jpeg" alt="Memory 4">
-
-        <img src="WhatsApp%20Image%202026-08-31%20at%204.56.27%20PM.jpeg" alt="Memory 5">
-
-        <img src="WhatsApp%20Image%202026-08-31%20at%204.56.29%20PM.jpeg" alt="Memory 6">
-
-        <img src="WhatsApp%20Image%202026-08-31%20at%204.56.30%20PM.jpeg" alt="Memory 7">
-
-        <img src="WhatsApp%20Image%202026-08-31%20at%204.56.31%20PM%20(1).jpeg" alt="Memory 8">
-
-        <img src="WhatsApp%20Image%202026-08-31%20at%204.56.31%20PM.jpeg" alt="Memory 9">
-
-        <img src="WhatsApp%20Image%202026-08-31%20at%204.56.35%20PM.jpeg" alt="Memory 10">
-
-        <img src="WhatsApp%20Image%202026-08-31%20at%205.01.22%20PM%20(1).jpeg" alt="Memory 11">
-
-        <img src="WhatsApp%20Image%202026-08-31%20at%208.59.51%20PM.jpeg" alt="Memory 12">
-
-        <img src="WhatsApp%20Image%202026-09-01%20at%2012.36.54%20AM%20(1).jpeg" alt="Memory 13">
-
-        <img src="WhatsApp%20Image%202026-09-01%20at%2012.36.54%20AM.jpeg" alt="Memory 14">
-
-        <img src="WhatsApp%20Image%202026-09-01%20at%2012.36.55%20AM.jpeg" alt="Memory 15">
-
-    </div>
+    <div id="memoryGallery" class="memory-gallery"></div>
 
     <div class="memory-end">
 
-        <button onclick="showPage('surprises')">
-            ← Back to Surprises
+        <button onclick="showPage('videoSurprise')">
+            Back ❤️
         </button>
+
+    </div>
+
+</section>
+
+
+<!-- ================================================= -->
+<!-- ================================================= -->
+<!-- 12. VIDEO SURPRISE -->
+<!-- ================================================= -->
+
+<section id="videoSurprise" class="page">
+
+    <div class="surprise-title">
+        🎁 One More Surprise 🎁
+    </div>
+
+    <div class="surprise-subtitle">
+        Something special is waiting ❤️
+    </div>
+
+    <div class="surprise-boxes vertical-surprises">
+
+        <div class="surprise-box" onclick="openVideo()">
+            <div class="surprise-icon">🎁</div>
+            <div class="surprise-name">Open Surprise</div>
+        </div>
 
     </div>
 
@@ -967,8 +943,8 @@ button:hover{
 
     </video>
 
-    <button onclick="showPage('surprises')">
-        ← Back to Surprises
+    <button onclick="continueFromVideo()">
+        Continue ❤️
     </button>
 
 </section>
@@ -979,10 +955,6 @@ button:hover{
 <!-- ================================================= -->
 
 <section id="finalGame" class="page">
-
-    <div class="game-title">
-        💭 One last little game, Daddy ❤️
-    </div>
 
     <div class="game-box">
 
@@ -1026,7 +998,7 @@ button:hover{
 
     </div>
 
-    <button onclick="showPage('finalPhoto')">
+    <button onclick="loadFinalPhoto(); showPage('finalPhoto')">
         One Last Surprise ❤️
     </button>
 
@@ -1044,8 +1016,8 @@ button:hover{
     </h1>
 
     <img
+        id="finalPhotoImage"
         class="final-photo"
-        src="WhatsApp%20Image%202026-09-01%20at%209.46.38%20AM.jpeg"
         alt="Final surprise photo">
 
 </section>
@@ -1080,36 +1052,23 @@ function showPage(id){
 /* YOUTUBE MUSIC */
 /* ================================================= */
 
+const MUSIC_VIDEO_ID = "zPLuIjRz8eA";
 let musicStarted = false;
 
 function startMusic(){
+
+    const iframe = document.getElementById("youtubeMusic");
+    if(!iframe) return;
 
     if(musicStarted) return;
 
     musicStarted = true;
 
-    const iframe =
-        document.getElementById("youtubeMusic");
-
-    try{
-
-        iframe.contentWindow.postMessage(
-            JSON.stringify({
-                event:"command",
-                func:"playVideo",
-                args:[]
-            }),
-            "*"
-        );
-
-    }catch(error){
-
-        console.log("Music start:",error);
-
-    }
-
+    iframe.src =
+        "https://www.youtube.com/embed/" + MUSIC_VIDEO_ID +
+        "?autoplay=1&loop=1&playlist=" + MUSIC_VIDEO_ID +
+        "&controls=0&playsinline=1&rel=0&enablejsapi=1&mute=0";
 }
-
 
 /* ================================================= */
 /* OPENING */
@@ -1164,20 +1123,11 @@ function firstCorrect(){
 
 const balloonPhotos = {
 
-    1:
-    "WhatsApp%20Image%202026-08-31%20at%209.05.48%20PM.jpeg",
-
-    2:
-    "WhatsApp%20Image%202026-08-31%20at%209.05.49%20PM.jpeg",
-
-    3:
-    "WhatsApp%20Image%202026-08-31%20at%209.05.48%20PM%20(1).jpeg",
-
-    4:
-    "WhatsApp%20Image%202026-08-31%20at%209.05.48%20PM%20(2).jpeg",
-
-    5:
-    "WhatsApp%20Image%202026-08-31%20at%209.06.17%20PM.jpeg"
+    1: "WhatsApp Image 2026-08-31 at 9.05.48 PM.jpeg",
+    2: "WhatsApp Image 2026-08-31 at 9.05.49 PM.jpeg",
+    3: "WhatsApp Image 2026-08-31 at 9.05.48 PM (1).jpeg",
+    4: "WhatsApp Image 2026-08-31 at 9.05.48 PM (2).jpeg",
+    5: "WhatsApp Image 2026-08-31 at 9.06.17 PM.jpeg"
 
 };
 
@@ -1188,11 +1138,47 @@ function showBalloonPhoto(number){
         document.getElementById("photo"+number);
 
     if(photo){
-        photo.src = balloonPhotos[number];
+        photo.src = "./" + encodeURIComponent(balloonPhotos[number]);
     }
 
     showPage("balloonPhoto"+number);
 
+}
+
+
+/* ================================================= */
+/* MEMORY PHOTOS */
+/* ================================================= */
+
+const memoryPhotos = [
+    "WhatsApp Image 2026-08-31 at 4.56.20 PM.jpeg",
+    "WhatsApp Image 2026-08-31 at 4.56.22 PM.jpeg",
+    "WhatsApp Image 2026-08-31 at 4.56.23 PM.jpeg",
+    "WhatsApp Image 2026-08-31 at 4.56.25 PM.jpeg",
+    "WhatsApp Image 2026-08-31 at 4.56.27 PM.jpeg",
+    "WhatsApp Image 2026-08-31 at 4.56.29 PM.jpeg",
+    "WhatsApp Image 2026-08-31 at 4.56.30 PM.jpeg",
+    "WhatsApp Image 2026-08-31 at 4.56.31 PM (1).jpeg",
+    "WhatsApp Image 2026-08-31 at 4.56.31 PM.jpeg",
+    "WhatsApp Image 2026-08-31 at 4.56.35 PM.jpeg",
+    "WhatsApp Image 2026-08-31 at 5.01.22 PM (1).jpeg",
+    "WhatsApp Image 2026-08-31 at 8.59.51 PM.jpeg",
+    "WhatsApp Image 2026-09-01 at 12.36.54 AM (1).jpeg",
+    "WhatsApp Image 2026-09-01 at 12.36.54 AM.jpeg",
+    "WhatsApp Image 2026-09-01 at 12.36.55 AM.jpeg"
+];
+
+function loadMemoryPhotos(){
+    const gallery = document.getElementById("memoryGallery");
+    if(!gallery || gallery.children.length) return;
+
+    memoryPhotos.forEach(function(filename, index){
+        const img = document.createElement("img");
+        img.src = "./" + encodeURIComponent(filename);
+        img.alt = "Memory " + (index + 1);
+        img.loading = "lazy";
+        gallery.appendChild(img);
+    });
 }
 
 
@@ -1202,6 +1188,7 @@ function showBalloonPhoto(number){
 
 function openMemories(){
 
+    loadMemoryPhotos();
     showPage("memories");
 
 }
@@ -1213,6 +1200,24 @@ function openVideo(){
 
 }
 
+
+function continueFromVideo(){
+
+    showPage("finalGame");
+
+}
+
+
+/* ================================================= */
+/* FINAL PHOTO */
+/* ================================================= */
+
+const finalPhotoFilename = "WhatsApp Image 2026-09-01 at 9.46.38 AM.jpeg";
+
+function loadFinalPhoto(){
+    const img = document.getElementById("finalPhotoImage");
+    if(img && !img.src) img.src = "./" + encodeURIComponent(finalPhotoFilename);
+}
 
 /* ================================================= */
 /* FINAL GAME */
@@ -1241,6 +1246,7 @@ function finalCorrect(){
 
     setTimeout(function(){
 
+        loadFinalPhoto();
         showPage("finalMessage");
 
     },2200);
